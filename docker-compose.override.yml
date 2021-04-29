@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    environment:
+      NODOS_HOST: "0.0.0.0"
+      NODOS_PORT: "8888"
+    command: npm start
+
+  caddy:
+    image: caddy:alpine
+    volumes:
+      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
+    depends_on:
+      - app
