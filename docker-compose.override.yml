@@ -5,6 +5,8 @@ services:
     environment:
       NODOS_HOST: "0.0.0.0"
       NODOS_PORT: "8080"
+    ports:
+      - "127.0.0.1:8080:8080"
     command: npm start
 
   caddy:
