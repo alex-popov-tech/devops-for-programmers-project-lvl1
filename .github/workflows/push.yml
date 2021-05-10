@@ -38,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile.production
+          file: ./Dockerfile.prod
           push: true
           tags: aleksanderpopov/dfp_p1:latest
