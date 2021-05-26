@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: ./.env.ci
+    depends_on:
+      - db
+    networks:
+      - devops-lvl1-network
+    ports:
+      - 8080:8080
+    command: npm test
+
+  db:
+    env_file: ./.env.ci
+    image: postgres:12.3-alpine
+    ports:
+      - 5432
+    volumes:
+      - devops-lvl1-pg-volume:/var/lib/postgresql/data
+    networks:
+      - devops-lvl1-network
+
+networks:
+  devops-lvl1-network:
+
+volumes:
+  devops-lvl1-pg-volume:
